@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'  # v0.0.0 релизнется, другого вида нихуя не релизнется
 
+permissions:
+  contents: write
+
 jobs:
   build-and-release:
     runs-on: windows-latest
@@ -37,4 +40,4 @@ jobs:
           tag_name: ${{ github.ref_name }}
           files: CursorLocker2.zip
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }} # changed from asd_2189sjcv89qjwdAknvy7j :troll:
+          GITHUB_TOKEN: ${{ secrets.cum }} # changed from asd_2189sjcv89qjwdAknvy7j :troll:
