@@ -1,29 +1,16 @@
 ﻿using System.Runtime.InteropServices;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Forms;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 
 namespace CursorLocker2;
 
 /// <summary>
-/// Interaction logic for MainWindow.xaml
+///     Interaction logic for MainWindow.xaml
 /// </summary>
 public partial class MainWindow : Window
 {
-    private bool isLocked = false;
+    private bool isLocked;
 
     public MainWindow()
     {
@@ -32,7 +19,7 @@ public partial class MainWindow : Window
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        this.Focus();
+        Focus();
     }
 
     private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -54,31 +41,21 @@ public partial class MainWindow : Window
         }
     }
 
-    // Lock to center using WinAPI
     [DllImport("user32.dll")]
-    static extern bool ClipCursor(ref RECT rect);
+    private static extern bool ClipCursor(ref RECT rect);
 
     [DllImport("user32.dll")]
-    static extern bool ClipCursor(IntPtr rect);
-
-    [StructLayout(LayoutKind.Sequential)]
-    private struct RECT
-    {
-        public int Left, Top, Right, Bottom;
-    }
+    private static extern bool ClipCursor(IntPtr rect);
 
     private void LockCursorToCenter()
     {
         var screen = Screen.PrimaryScreen.Bounds;
-        int x = screen.Width / 2;
-        int y = screen.Height / 2;
+        var x = screen.Width / 2;
+        var y = screen.Height / 2;
 
-        RECT rect = new RECT
+        var rect = new RECT
         {
-            Left = x,
-            Top = y,
-            Right = x + 1,
-            Bottom = y + 1
+            Left = x, Top = y, Right = x + 1, Bottom = y + 1
         };
 
         ClipCursor(ref rect);
@@ -87,5 +64,11 @@ public partial class MainWindow : Window
     private void UnlockCursor()
     {
         ClipCursor(IntPtr.Zero);
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct RECT
+    {
+        public int Left, Top, Right, Bottom;
     }
 }

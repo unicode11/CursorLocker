@@ -9,7 +9,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="System.Drawing.Common" Version="10.0.0-preview.4.25258.110" />
+        <PackageReference Include="System.Drawing.Common" Version="10.0.0-preview.4.25258.110"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include=".github\workflows\build.yml" />
+      <Content Include=".github\workflows\release.yml" />
     </ItemGroup>
 
     <PropertyGroup>
