@@ -13,8 +13,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include=".github\workflows\build.yml" />
-      <Content Include=".github\workflows\release.yml" />
+        <Content Include=".github\workflows\build.yml"/>
+        <Content Include=".github\workflows\release.yml"/>
     </ItemGroup>
 
     <PropertyGroup>
